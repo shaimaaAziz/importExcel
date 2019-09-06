@@ -64,7 +64,11 @@ class ImportExcelController extends Controller
                          $beneficiary = new Beneficiary();
 
                          $importExcel->batchNo = $value[3];
-                          $importExcel->dateOfPayment=Carbon::create($value[1][0], $value[1][2], $value[1][4]);
+
+                         $importExcel->dateOfPayment =
+                       Carbon::instance(\PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject(
+                                                         $value[1]));
+//                          $importExcel->dateOfPayment=Carbon::create($value[1][0], $value[1][2], $value[1][4]);
                          $importExcel->sponsorNo = $value[2];
 
                          $importArray [] = $importExcel;
@@ -80,12 +84,10 @@ class ImportExcelController extends Controller
                              $importExcel->sponsorNo = $value[2];
                              $importExcel->batchNo = $value[3];
 
-                          $importExcel->dateOfPayment=Carbon::create($value[1][0], $value[1][2], $value[1][4]);
-
-
-
+                              Carbon::instance(\PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject(
+                                                                $value[1]));
+//                          $importExcel->dateOfPayment=Carbon::create($value[1][0], $value[1][2], $value[1][4]);
                              $importArray [] = $importExcel;
-
 
                              $beneficiary->beneficiaryNo = $value[0];
                              $beneficiary->currency = $value[4];

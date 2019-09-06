@@ -43,19 +43,19 @@ myApp.controller("importController", function ($scope ,$http) {
             dataType: 'json',
         }).then(function successCallback(response) {
             console.log(response);
-            // alert('Success');
+             alert('Success');
 
         }, function error(error) {
-            // alert('fail');
-            // $scope.recordErrors(error);
+             alert('fail');
+           $scope.recordErrors(error);
         });
     }
 
-    // $scope.recordErrors = function (error) {
-    //     $scope.errors = [];
-    //     if (error.data.errors.import_file) {
-    //         $scope.errors.push(error.data.errors.import_file[0]);
-    //     }
-    // }
+    $scope.recordErrors = function (error) {
+        $scope.errors = [];
+        if (error.data.errors.import_file) {
+            $scope.errors.push(error.data.errors.import_file[0]);
+        }
+    }
 
 })
